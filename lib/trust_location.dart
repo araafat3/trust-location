@@ -44,9 +44,13 @@ class TrustLocation {
   }
 
   /// check mock location on Android device.
-  static Future<bool> get isMockLocation async {
-    final bool isMock = await _channel.invokeMethod('isMockLocation');
-    return isMock;
+   static Future<bool> get isMockLocation async {
+    try{
+      final bool isMock = await _channel.invokeMethod('isMockLocation');
+      return isMock;
+    }catch(error){
+      return false;
+    }
   }
 
   void dispose() {
